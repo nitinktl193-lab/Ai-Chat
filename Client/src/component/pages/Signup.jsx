@@ -15,11 +15,14 @@ function Signup() {
     setError("");
 
     try {
-      const res = await axios.post("http://localhost:5000/signup", {
-        name,
-        email,
-        password,
-      });
+      const res = await axios.post(
+        "https://ai-chat-1-uqy6.onrender.com/signup",
+        {
+          name,
+          email,
+          password,
+        }
+      );
 
       if (res.data.success) {
         alert("Signup successful. Now login.");
@@ -36,7 +39,7 @@ function Signup() {
         <h1>Create Account</h1>
         <p>Start your AI journey today</p>
 
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <div className="error-box">{error}</div>}
 
         <form onSubmit={handleSignup}>
           <input

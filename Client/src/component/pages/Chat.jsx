@@ -8,6 +8,8 @@ import "./Chat.css";
 import Sidebar from "../Sidebar/Sidebar";
 import ChatWindow from "../Chat/ChatWindow";
 
+const API_URL = "https://ai-chat-1-uqy6.onrender.com";
+
 function Chat() {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
@@ -39,7 +41,7 @@ function Chat() {
 
     const fetchChats = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/chats/${user.id}`);
+        const res = await axios.get(`${API_URL}/chats/${user.id}`);
 
         if (res.data.success && res.data.chats.length > 0) {
           setChats(res.data.chats);
@@ -49,7 +51,7 @@ function Chat() {
           setChats([newChat]);
           setActiveChat(newChat.id);
 
-          await axios.post("http://localhost:5000/chats/save", {
+          await axios.post(`${API_URL}/chats/save`, {
             userId: user.id,
             chatId: String(newChat.id),
             title: newChat.title,
@@ -71,7 +73,7 @@ function Chat() {
 
   const saveChatToDB = async (chat) => {
     try {
-      await axios.post("http://localhost:5000/chats/save", {
+      await axios.post(`${API_URL}/chats/save`, {
         userId: user.id,
         chatId: String(chat.id),
         title: chat.title,
@@ -98,7 +100,7 @@ function Chat() {
     const updated = chats.filter((chat) => chat.id !== id);
 
     try {
-      await axios.delete(`http://localhost:5000/chats/${user.id}/${id}`);
+      await axios.delete(`${API_URL}/chats/${user.id}/${id}`);
     } catch (err) {
       console.log("Delete chat error:", err);
     }

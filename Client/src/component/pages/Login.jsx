@@ -14,10 +14,13 @@ function Login() {
     setError("");
 
     try {
-      const response = await axios.post("http://localhost:5000/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://ai-chat-1-uqy6.onrender.com/login",
+        {
+          email,
+          password,
+        }
+      );
 
       if (response.data.success) {
         localStorage.setItem("user", JSON.stringify(response.data.user));
@@ -38,7 +41,7 @@ function Login() {
 
       <div className="login-card">
         <h1>Welcome Back</h1>
-        <p>Login to continue your AI chat</p>
+        <p>Login to continue your AI Chat</p>
 
         {error && <div className="error-box">{error}</div>}
 

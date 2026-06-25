@@ -7,6 +7,8 @@ import Message from "./Message";
 import MessageInput from "./MessageInput";
 import TypingIndicator from "./TypingIndicator";
 
+const API_URL = "https://ai-chat-1-uqy6.onrender.com";
+
 function ChatWindow({ chats, setChats, activeChat, setSidebarOpen }) {
   const [isTyping, setIsTyping] = useState(false);
   const [paymentRequired, setPaymentRequired] = useState(false);
@@ -27,7 +29,7 @@ function ChatWindow({ chats, setChats, activeChat, setSidebarOpen }) {
   const saveMessagesToDB = async (newMessages) => {
     if (userId && currentChat) {
       try {
-        await axios.post("http://localhost:5000/chats/save", {
+        await axios.post(`${API_URL}/chats/save`, {
           userId,
           chatId: String(activeChat),
           title: currentChat.title,
@@ -84,7 +86,7 @@ function ChatWindow({ chats, setChats, activeChat, setSidebarOpen }) {
 
     let fullReply = "";
 
-    const response = await fetch("http://localhost:5000/chat-stream", {
+    const response = await fetch(`${API_URL}/chat-stream`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

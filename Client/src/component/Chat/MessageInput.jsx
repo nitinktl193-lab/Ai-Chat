@@ -3,6 +3,8 @@ import { Send, Paperclip, Mic, X, Crown } from "lucide-react";
 import axios from "axios";
 import "./MessageInput.css";
 
+const API_URL = "https://ai-chat-1-uqy6.onrender.com";
+
 function MessageInput({ sendMessage, paymentRequired }) {
   const [message, setMessage] = useState("");
   const [files, setFiles] = useState([]);
@@ -88,12 +90,9 @@ function MessageInput({ sendMessage, paymentRequired }) {
         return;
       }
 
-      const orderRes = await axios.post(
-        "http://localhost:5000/payment/create-order",
-        {
-          userId: user.id,
-        }
-      );
+      const orderRes = await axios.post(`${API_URL}/payment/create-order`, {
+        userId: user.id,
+      });
 
       const { order, key } = orderRes.data;
 
@@ -107,15 +106,12 @@ function MessageInput({ sendMessage, paymentRequired }) {
 
         handler: async function (response) {
           try {
-            const verifyRes = await axios.post(
-              "http://localhost:5000/payment/verify",
-              {
-                userId: user.id,
-                razorpay_order_id: response.razorpay_order_id,
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_signature: response.razorpay_signature,
-              }
-            );
+            const verifyRes = await axios.post(`${API_URL}/payment/verify`, {
+              userId: user.id,
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+            });
 
             if (verifyRes.data.success) {
               localStorage.setItem("user", JSON.stringify(verifyRes.data.user));
