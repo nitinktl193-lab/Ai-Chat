@@ -11,3 +11,11 @@ GROQ_API_KEY=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
 RAZORPAY_KEY_ID=rzp_test_T5kaqGpCoNtBaJ
 
 RAZORPAY_KEY_SECRET=D0WptxZ4jvtRYVwz7h42ak1h
+
+
+node_modules
+Client/node_modules
+Server/node_modules
+.env
+Client/.env
+Server/.env
