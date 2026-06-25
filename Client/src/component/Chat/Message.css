@@ -1,0 +1,144 @@
+.message.ai {
+  background: transparent;
+  color: white;
+  max-width: 100%;
+}
+
+.message.user {
+  background: #2f2f2f;
+  color: white;
+  margin-left: auto;
+}
+
+.message {
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  border-radius: 16px;
+  line-height: 1.8;
+}
+.message {
+  max-width: 80%;
+  margin-bottom: 20px;
+}
+
+.message-content {
+  position: relative;
+  padding: 14px 18px;
+  border-radius: 16px;
+}
+
+.message.user .message-content {
+  background: #2563eb;
+  color: white;
+}
+
+.message.ai .message-content {
+  background: #2a2a2a;
+  color: white;
+}
+
+.copy-btn {
+  position: absolute;
+  right: 10px;
+  bottom: -35px;
+
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.copy-btn:hover {
+  color: white;
+}
+
+.message.user {
+  margin-left: auto;
+}
+
+.message.ai {
+  margin-right: auto;
+}
+.code-box {
+  margin-top: 12px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #020617;
+  border: 1px solid #334155;
+}
+
+.code-header {
+  padding: 8px 12px;
+  background: #111827;
+  color: #cbd5e1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.code-header button {
+  border: none;
+  background: #2563eb;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.code-box pre {
+  margin: 0;
+  padding: 14px;
+  overflow-x: auto;
+}
+
+.code-box code {
+  color: #e5e7eb;
+  font-size: 14px;
+}
+
+.inline-code {
+  background: rgba(148, 163, 184, 0.25);
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.message-bubble p {
+  line-height: 1.6;
+}
+
+.message-bubble ul,
+.message-bubble ol {
+  padding-left: 22px;
+}
+.message-actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.message-actions button {
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  padding: 6px 10px;
+  border-radius: 9px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+}
+
+.message-actions button:hover {
+  background: rgba(37, 99, 235, 0.35);
+  color: white;
+}
+
+.active-feedback {
+  background: #2563eb !important;
+  color: white !important;
+}

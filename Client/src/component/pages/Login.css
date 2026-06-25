@@ -1,0 +1,254 @@
+* {
+  box-sizing: border-box;
+}
+
+.login-container {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #667eea, #764ba2, #ff758c);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.login-container::before {
+  content: "";
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+  top: -120px;
+  left: -120px;
+  animation: pulse 6s infinite alternate;
+}
+
+.login-container::after {
+  content: "";
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  bottom: -100px;
+  right: -100px;
+  animation: pulse 5s infinite alternate;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 35px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  text-align: center;
+  animation: cardUp 0.9s ease;
+  z-index: 2;
+}
+
+.login-card h1 {
+  font-size: 36px;
+  color: #fff;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.login-card p {
+  color: #f1f5f9;
+  margin-bottom: 25px;
+  font-size: 15px;
+}
+
+.login-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 15px 18px;
+  border: none;
+  outline: none;
+  border-radius: 14px;
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #111827;
+  transition: 0.3s ease;
+}
+
+.input-group input:focus {
+  transform: scale(1.03);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.35);
+}
+
+.login-card button {
+  padding: 15px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #111827, #4338ca);
+  color: white;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.login-card button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+}
+
+.login-card span {
+  display: block;
+  margin-top: 22px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.login-card span a {
+  color: #fff700;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.error-box {
+  background: rgba(255, 0, 0, 0.15);
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.butterfly {
+  position: absolute;
+  font-size: 34px;
+  z-index: 1;
+  opacity: 0.9;
+}
+
+.butterfly1 {
+  top: 15%;
+  left: -60px;
+  animation: fly1 12s linear infinite;
+}
+
+.butterfly2 {
+  top: 55%;
+  left: -80px;
+  animation: fly2 16s linear infinite;
+}
+
+.butterfly3 {
+  bottom: 18%;
+  right: -70px;
+  animation: fly3 14s linear infinite;
+}
+
+@keyframes cardUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes fly1 {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateX(55vw) translateY(-80px) rotate(25deg);
+  }
+  100% {
+    transform: translateX(110vw) translateY(40px) rotate(-20deg);
+  }
+}
+
+@keyframes fly2 {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateX(60vw) translateY(90px) rotate(-30deg);
+  }
+  100% {
+    transform: translateX(115vw) translateY(-70px) rotate(20deg);
+  }
+}
+
+@keyframes fly3 {
+  0% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateX(-55vw) translateY(-90px) rotate(30deg);
+  }
+  100% {
+    transform: translateX(-115vw) translateY(60px) rotate(-25deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .login-card {
+    max-width: 360px;
+    padding: 35px 25px;
+  }
+
+  .login-card h1 {
+    font-size: 30px;
+  }
+
+  .butterfly {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    padding: 15px;
+  }
+
+  .login-card {
+    padding: 30px 20px;
+    border-radius: 20px;
+  }
+
+  .login-card h1 {
+    font-size: 26px;
+  }
+
+  .login-card p {
+    font-size: 14px;
+  }
+
+  .input-group input {
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  .login-card button {
+    padding: 14px;
+    font-size: 16px;
+  }
+}
