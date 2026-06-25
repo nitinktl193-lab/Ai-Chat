@@ -1,24 +1,13 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+PORT=5000
 
-node_modules
-dist
-dist-ssr
-*.local
+MONGO_URI=mongodb+srv://nitin:Admin12345@cluster0.udzjoh3.mongodb.net/AIChat?retryWrites=true&w=majority&appName=Cluster0
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+JWT_SECRET=nitin123
+
+
+
+
+GROQ_API_KEY=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
+RAZORPAY_KEY_ID=rzp_test_T5kaqGpCoNtBaJ
+
+RAZORPAY_KEY_SECRET=D0WptxZ4jvtRYVwz7h42ak1h
