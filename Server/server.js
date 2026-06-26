@@ -16,6 +16,36 @@ app.use(express.json({ limit: "10mb" }));
 
 const GROQ_API_KEY = process.env.GROQ_API_KEY;
 
+const SYSTEM_PROMPT = `
+You are AI Chat, a helpful assistant like ChatGPT.
+
+Rules:
+- Reply in the same language as the user.
+- If user writes in Hindi or Hinglish, reply in simple Hinglish.
+- Give clear, complete and practical answers.
+- For coding questions, give full working code when user asks "full code".
+- Explain exactly where to paste the code.
+- Do not give too short answers unless user asks "short".
+- Be friendly, direct and helpful.
+- If user is confused, guide step-by-step.
+`;
+
+function buildGroqMessages(messages = [], currentMessage = "") {
+  const history = (messages || [])
+    .filter((msg) => msg?.text && msg?.sender)
+    .slice(-12)
+    .map((msg) => ({
+      role: msg.sender === "user" ? "user" : "assistant",
+      content: msg.text,
+    }));
+
+  return [
+    { role: "system", content: SYSTEM_PROMPT },
+    ...history,
+    { role: "user", content: currentMessage },
+  ];
+}
+
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
   key_secret: process.env.RAZORPAY_KEY_SECRET,
@@ -362,15 +392,9 @@ app.post("/chat", async (req, res) => {
       "https://api.groq.com/openai/v1/chat/completions",
       {
         model: "llama-3.3-70b-versatile",
-        messages: [
-          {
-            role: "system",
-            content:
-              "You are a helpful AI assistant. Give clear, detailed and accurate answers in simple language.",
-          },
-          { role: "user", content: message },
-        ],
-        temperature: 0.5,
+        messages: buildGroqMessages(messages, message),
+        temperature: 0.4,
+        max_tokens: 2048,
       },
       {
         headers: {
@@ -388,13 +412,20 @@ app.post("/chat", async (req, res) => {
     }
 
     if (userId && chatId) {
+      const aiMessage = {
+        id: crypto.randomUUID(),
+        sender: "ai",
+        text: reply,
+        files: [],
+      };
+
       await Chat.findOneAndUpdate(
         { userId, chatId },
         {
           userId,
           chatId,
           title: title || "New Chat",
-          messages: messages || [],
+          messages: [...(messages || []), aiMessage],
         },
         { upsert: true, new: true }
       );
@@ -416,7 +447,6 @@ app.post("/chat", async (req, res) => {
   }
 });
 
-// ================= STREAMING CHAT SSE =================
 app.post("/chat-stream", async (req, res) => {
   try {
     const { message, userId, chatId, title, messages } = req.body;
@@ -447,15 +477,9 @@ app.post("/chat-stream", async (req, res) => {
       {
         model: "llama-3.3-70b-versatile",
         stream: true,
-        messages: [
-          {
-            role: "system",
-            content:
-              "You are a helpful AI assistant. Give clear, detailed and accurate answers in simple language.",
-          },
-          { role: "user", content: message },
-        ],
-        temperature: 0.5,
+        messages: buildGroqMessages(messages, message),
+        temperature: 0.4,
+        max_tokens: 2048,
       },
       {
         headers: {
