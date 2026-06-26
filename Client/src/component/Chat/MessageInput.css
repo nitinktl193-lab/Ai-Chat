@@ -178,3 +178,25 @@
     gap: 5px;
   }
 }
+@media (max-width: 768px) {
+  .message-input-box {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 8px;
+    z-index: 500;
+  }
+
+  .input-row {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .input-row textarea {
+    min-width: 0;
+  }
+}
