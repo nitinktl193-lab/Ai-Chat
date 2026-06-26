@@ -1,22 +1,3 @@
-.chat-window {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  background: #212121;
-  color: white;
-  height: 100vh;
-}
-
-/* Messages Area */
-.messages-container {
-  flex: 1;
-  overflow-y: auto;
-  padding: 30px 20px;
-  max-width: 900px;
-  width: 100%;
-  margin: 0 auto;
-  scroll-behavior: smooth;
-}
 
 /* Empty State */
 .empty-chat {
@@ -194,5 +175,51 @@
 
   .payment-warning-box p {
     font-size: 12px;
+  }
+}
+.chat-window {
+  width: 100%;
+  max-width: 100vw;
+  flex: 1;
+  overflow: hidden;
+}
+
+.messages-container {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.mobile-header {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-header {
+    height: 55px;
+    width: 100vw;
+    padding: 0 14px;
+    background: #111827;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1px solid #243044;
+  }
+
+  .mobile-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mobile-logo h3 {
+    margin: 0;
+    font-size: 17px;
+  }
+
+  .chat-window {
+    height: calc(100dvh - 55px);
+    width: 100vw;
   }
 }
